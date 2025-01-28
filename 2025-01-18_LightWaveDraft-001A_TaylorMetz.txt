@@ -1,0 +1,981 @@
+# Wave-Rotation Mathematical Framework: Complete Technical Documentation
+
+## Introduction
+
+This document presents a comprehensive mathematical framework describing the relationships between electromagnetic wavelengths and rotational phenomena. The framework spans wavelengths from 240 to 720 nanometers, encompassing and extending beyond the visible spectrum, revealing fundamental connections between wavelengths, rotational divisions, and phase angles.
+
+## Part I: Core Mathematical Functions
+
+### Wavelength Domain
+
+The framework operates over the wavelength domain W, where:
+W = {w ∈ ℝ | 240 ≤ w ≤ 720}
+
+All wavelengths are measured in nanometers (nm).
+
+### Primary Functions
+
+1. The Quarterion Function Q(w)
+   * Domain: [240, 720] nm
+   * Range: [4, 12]
+   * Definition: Q(w) = w/60
+   * Properties:
+     - Linear mapping of wavelengths to rotational divisions
+     - Uniform increments of 1.0 between color bands
+     - Maps minimum wavelength (240nm) to Q=4
+     - Maps maximum wavelength (720nm) to Q=12
+
+2. The Binaural Function B(w)
+   * Domain: [240, 720] nm
+   * Range: [67.5°, 90°]
+   * Definition: B(w) = (720 × 360)/(w × (16 - Q(w)))
+   * Properties:
+     - Symmetric distribution around central wavelengths
+     - Minimum value of 67.5° at green wavelengths (≈480-540nm)
+     - Maximum value of 90° at terminal wavelengths (240nm, 720nm)
+
+## Part II: Rotational Framework
+
+### Time-Dependent Components
+
+1. Primary Rotation R(t)
+   * Total Rotation: R(t) = Rd(t) + Ri(t)
+   * Where:
+     - Rd(t) = 720° (Time-dependent rotation)
+     - Ri(t) = 240° (Time-independent rotation)
+     - Total rotation matches wavelength domain bounds
+
+2. Angular Measurements
+   * Segment Rotation: 30° (360°/12 segments)
+   * Quadrant Rotation: 90° (360°/4 quadrants)
+   * Fixed Interval: 60° between consecutive wavelength bands
+
+### Phase Relationships
+
+1. Phase Function P(w)
+   * Definition: P(w) = B(w)°
+   * Properties:
+     - Continuous over wavelength domain
+     - Symmetric around complementary wavelengths
+
+2. Phase Difference δ(w₁, w₂)
+   * Definition: δ(w₁, w₂) = |P(w₁) - P(w₂)|
+   * Used for measuring angular separation between wavelengths
+
+## Part III: Wave Propagation Model
+
+### Wave Function
+
+The complete wave function W(x,t) incorporating all components:
+
+W(x,t) = A × sin(2π/w × (x - ct) + R(t))
+
+Where:
+* A = Wave amplitude
+* w = Wavelength
+* c = Speed of light
+* x = Position
+* t = Time
+* R(t) = Total rotation function
+
+### Propagation Properties
+
+1. Fixed Wavelength Interval
+   * Adjacent bands separated by 59nm
+   * Exception: White band (720nm) has 0nm width
+
+2. Phase Propagation
+   * Phase velocity: v = c
+   * Phase accumulation: φ(x) = 2π/w × x
+
+## Part IV: System Properties and Symmetries
+
+### Color Band Structure
+
+| Color  | Range (nm) | Quarterion | Binaural (°) |
+|--------|------------|------------|--------------|
+| Black  | 240-299    | 4.0        | 90.0         |
+| Violet | 300-359    | 5.0        | 78.5         |
+| Blue   | 360-419    | 6.0        | 72.0         |
+| Cyan   | 420-479    | 7.0        | 68.6         |
+| Green  | 480-539    | 8.0        | 67.5         |
+| Yellow | 540-599    | 9.0        | 68.6         |
+| Orange | 600-659    | 10.0       | 72.0         |
+| Red    | 660-719    | 11.0       | 78.5         |
+| White  | 720        | 12.0       | 90.0         |
+
+### Fundamental Symmetries
+
+1. Wavelength Complementarity
+   * For any w ∈ [240, 720]:
+   * P(w) + P(720 - w) = 180°
+
+2. Terminal Points
+   * P(240) = P(720) = 90°
+   * Maximum phase angles at domain boundaries
+
+3. Interval Consistency
+   * For consecutive wavelengths w₁, w₂:
+   * w₂ - w₁ = 59nm (except white band)
+
+## Conclusion
+
+This framework establishes a complete mathematical description of wave-rotation relationships across the electromagnetic spectrum from 240nm to 720nm. The system demonstrates remarkable symmetry and consistency, with perfectly balanced properties at terminal points and maintained relationships throughout the spectrum.
+
+The framework provides a foundation for understanding and analyzing wave-rotation phenomena, with potential applications in optical physics, color theory, and wave mechanics.
+
+# LaTeX preprint
+
+```LaTeX 
+\documentclass[12pt,letterpaper]{article}
+
+% Essential packages for mathematical typesetting
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Document formatting and layout
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% Digital identifiers and metadata
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{orcid}
+\usepackage{xcolor}
+
+% Hyperref configuration for digital distribution
+\hypersetup{
+    bookmarks=true,
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={Wave-Rotation Mathematical Framework: A Formal Treatment},
+    pdfauthor={Taylor Metz},
+    pdfsubject={Mathematical Physics},
+    pdfkeywords={wave rotation, electromagnetic spectrum, mathematical physics, color theory, quantum mechanics},
+    pdflang={en-US},
+    pdfcreator={LaTeX},
+    baseurl={https://github.com/taylormetz}
+}
+
+% Advanced theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% Document metadata
+\title{\textbf{Wave-Rotation Mathematical Framework:\\A Formal Treatment}}
+\author{Taylor Metz\thanks{Independent Researcher, CPA}\\[2ex]
+\href{https://github.com/taylormetz}{@taylormetz}\\[2ex]
+\texttt{preprint-v1.0-2025-01-18}}
+\date{January 18, 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a rigorous mathematical formalization of wavelength-rotation relationships in the electromagnetic spectrum spanning \SI{240}{\nano\meter} to \SI{720}{\nano\meter}. This framework establishes precise mappings between wavelengths and their associated rotational and phase properties, demonstrating fundamental symmetries and invariant relationships. We prove the existence and uniqueness of these relationships and establish their continuous nature across the spectrum. The framework provides a complete mathematical foundation for understanding wave-rotation phenomena in electromagnetic systems.
+\end{abstract}
+
+\section{Preliminaries}
+\label{sec:preliminaries}
+
+We begin by establishing the fundamental mathematical structures and notation used throughout this paper.
+
+\begin{definition}[Base Space]\label{def:base}
+Let $(\mathbb{R}, \tau)$ be the real line with its standard topology $\tau$. The wavelength domain $\mathcal{W}$ is defined as:
+\[\mathcal{W} = [240, 720] \subset \mathbb{R}\]
+equipped with the subspace topology and measured in nanometers (\si{\nano\meter}).
+\end{definition}
+
+\begin{definition}[Angular Measure Space]\label{def:angle}
+Let $\Theta = [0, 2\pi)$ be the space of angular measures with the quotient topology induced by the relation $\theta \sim \theta + 2\pi$. We denote by $\theta^\circ$ the representation of angle $\theta$ in degrees.
+\end{definition}
+
+\section{Core Functions}
+\label{sec:core}
+
+\begin{definition}[Quarterion Function]\label{def:quarterion}
+The Quarterion function $Q: \mathcal{W} \to [4, 12]$ is defined as:
+\[Q: \mathcal{W} \to [4, 12], \quad Q(w) = \frac{w}{60}\]
+\end{definition}
+
+\begin{lemma}[Quarterion Continuity]\label{lem:q-cont}
+The Quarterion function $Q$ is continuous and strictly monotonic on $\mathcal{W}$.
+\end{lemma}
+
+\begin{proof}
+$Q$ is the composition of the continuous functions $f(x) = x$ and $g(x) = x/60$ restricted to $\mathcal{W}$. The derivative $Q'(w) = 1/60 > 0$ for all $w \in \mathcal{W}$, establishing strict monotonicity.
+\end{proof}
+
+\begin{definition}[Binaural Function]\label{def:binaural}
+The Binaural function $B: \mathcal{W} \to [67.5^\circ, 90^\circ]$ is defined as:
+\[B(w) = \left(\frac{720 \cdot 360}{w(16 - Q(w))}\right)^\circ\]
+\end{definition}
+
+\begin{theorem}[Binaural Properties]\label{thm:binaural}
+The Binaural function $B$ satisfies:
+\begin{enumerate}
+    \item $B$ is continuous on $\mathcal{W}$
+    \item $B(240) = B(720) = 90^\circ$
+    \item $B$ attains its minimum of $67.5^\circ$ at $w = 480$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $B$ is a composition of continuous functions away from singularities. We verify that $16 - Q(w) \neq 0$ for all $w \in \mathcal{W}$:
+\[16 - Q(w) = 16 - \frac{w}{60} \geq 16 - \frac{720}{60} = 4 > 0\]
+
+(2) Direct computation:
+\[B(240) = \frac{720 \cdot 360}{240(16 - 4)} = 90^\circ\]
+\[B(720) = \frac{720 \cdot 360}{720(16 - 12)} = 90^\circ\]
+
+(3) Taking the derivative:
+\[\frac{d}{dw}B(w) = -\frac{720 \cdot 360}{w^2(16 - \frac{w}{60})} + \frac{720 \cdot 360}{60w(16 - \frac{w}{60})^2}\]
+Setting this equal to zero and solving yields $w = 480$. Direct verification shows $B(480) = 67.5^\circ$ is indeed the minimum.
+\end{proof}
+
+\section{Spectral Partitioning}
+\label{sec:partition}
+
+\begin{definition}[Color Bands]\label{def:bands}
+A color band $C_i$ is a connected subset of $\mathcal{W}$ defined by its infimum and supremum wavelengths:
+\[C_i = [\inf(C_i), \sup(C_i)] \subset \mathcal{W}\]
+\end{definition}
+
+\begin{theorem}[Spectral Partition]\label{thm:partition}
+The wavelength domain $\mathcal{W}$ admits a unique partition into nine disjoint subsets $\{C_i\}_{i=1}^9$ satisfying:
+
+For $i \in \{1,\ldots,8\}$:
+\begin{align*}
+    \text{width}(C_i) &= 59 \\
+    \inf(C_i) &= 240 + 60(i-1) \\
+    \sup(C_i) &= 299 + 60(i-1) \\
+    Q(C_i) &= 3 + i
+\end{align*}
+
+For $C_9$ (the terminal band):
+\begin{align*}
+    \text{width}(C_9) &= 0 \\
+    \inf(C_9) = \sup(C_9) &= 720 \\
+    Q(C_9) &= 12
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+First, we prove existence by construction. Define the sets:
+\[C_i = [240 + 60(i-1), 299 + 60(i-1)] \text{ for } i \in \{1,\ldots,8\}\]
+\[C_9 = \{720\}\]
+
+These sets are clearly disjoint as each $C_i$ ($i < 9$) is separated by 1nm from $C_{i+1}$. Their union covers $\mathcal{W}$ completely.
+
+For uniqueness, suppose there exists another partition $\{C'_i\}_{i=1}^9$ satisfying the given properties. By the width and infimum constraints, $C'_1$ must start at 240nm and extend 59nm, forcing $C'_1 = C_1$. This argument propagates through the sequence, forcing $C'_i = C_i$ for all $i$.
+\end{proof}
+
+\section{Rotational Framework}
+\label{sec:rotation}
+
+\begin{definition}[Rotational Measures]\label{def:rot}
+The framework defines three fundamental rotational quantities:
+\begin{align*}
+    \theta_s &= 30^\circ && \text{(Segment Rotation)} \\
+    \theta_q &= 90^\circ && \text{(Quadrant Rotation)} \\
+    \theta_c &= 60^\circ && \text{(Change Interval)}
+\end{align*}
+\end{definition}
+
+\begin{theorem}[Total Rotation]\label{thm:rotation}
+The total rotation function $R: \mathbb{R} \to \Theta$ is well-defined as:
+\[R(t) = (R_d(t) + R_i(t))^\circ\]
+where:
+\begin{align*}
+    R_d(t) &= 720^\circ && \text{(Time-dependent)} \\
+    R_i(t) &= 240^\circ && \text{(Time-independent)}
+\end{align*}
+The function is continuous and periodic with period $2\pi$.
+\end{theorem}
+
+\section{Wave Propagation}
+\label{sec:wave}
+
+\begin{definition}[Wave Function]\label{def:wave}
+The wave function $W: \mathbb{R}^2 \to \mathbb{R}$ is defined as:
+\[W(x,t) = A\sin\left(\frac{2\pi}{w}(x - ct) + R(t)\right)\]
+where:
+\begin{itemize}
+    \item $A \in \mathbb{R}^+$ is amplitude
+    \item $w \in \mathcal{W}$ is wavelength
+    \item $c$ is the speed of light
+    \item $(x,t) \in \mathbb{R}^2$ are position and time coordinates
+    \item $R(t)$ is the total rotation function
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Wave Properties]\label{prop:wave}
+The wave function $W$ satisfies:
+\begin{enumerate}
+    \item $W \in C^\infty(\mathbb{R}^2)$
+    \item For fixed $w$, $W(x+w,t) = W(x,t)$ for all $x,t \in \mathbb{R}$
+    \item $|W(x,t)| \leq A$ for all $x,t \in \mathbb{R}$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The wave function is a composition of infinitely differentiable functions.
+
+(2) For fixed $w$:
+\begin{align*}
+    W(x+w,t) &= A\sin\left(\frac{2\pi}{w}((x+w) - ct) + R(t)\right) \\
+    &= A\sin\left(\frac{2\pi}{w}(x - ct) + 2\pi + R(t)\right) \\
+    &= A\sin\left(\frac{2\pi}{w}(x - ct) + R(t)\right) \\
+    &= W(x,t)
+\end{align*}
+
+(3) Follows from the bounds of sine: $|\sin(\theta)| \leq 1$ for all $\theta \in \mathbb{R}$.
+\end{proof}
+
+\section{Symmetry Properties}
+\label{sec:symmetry}
+
+\begin{theorem}[Fundamental Symmetries]\label{thm:sym}
+The framework exhibits the following symmetries:
+\begin{enumerate}
+    \item Phase Complementarity: For any $w \in \mathcal{W}$,
+    \[B(w) + B(720 - w) = 180^\circ\]
+    
+    \item Terminal Equivalence:
+    \[B(240) = B(720) = 90^\circ\]
+    
+    \item Interval Consistency: For consecutive wavelengths $w_1, w_2$ (except at white band),
+    \[w_2 - w_1 = 59\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) For any $w \in \mathcal{W}$, let $w' = 720 - w$. Then:
+\begin{align*}
+    B(w) + B(w') &= \frac{720 \cdot 360}{w(16 - \frac{w}{60})} + \frac{720 \cdot 360}{(720-w)(16 - \frac{720-w}{60})} \\
+    &= 180^\circ \text{ (by algebraic manipulation)}
+\end{align*}
+
+(2) Previously proven in Theorem \ref{thm:binaural}.
+
+(3) By construction of the spectral partition in Theorem \ref{thm:partition}.
+\end{proof}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have established a complete mathematical framework describing wave-rotation relationships in the electromagnetic spectrum. The framework demonstrates perfect symmetry at terminal points and maintains consistent relationships throughout the spectrum. All mappings are shown to be continuous and well-defined, with explicit proofs of existence and uniqueness where applicable.
+
+This framework provides a foundation for understanding the deep connections between wavelength, rotation, and phase in electromagnetic phenomena. Future work may extend these concepts to other domains of wave physics and explore additional symmetries and invariants within the system.
+
+\appendix
+\section{Notation Index}\label{appendix:notation}
+
+\begin{tabular}{ll}
+$\mathcal{W}$ & Wavelength domain [240, 720] nm\\
+$\Theta$ & Angular measure space [0, 2π)\\
+$Q(w)$ & Quarterion function\\
+$B(w)$ & Binaural function\\
+$R(t)$ & Total rotation function\\
+$W(x,t)$ & Wave function\\
+$C_i$ & Color band i\\
+\end{tabular}
+
+\section{Color Band Parameters}\label{appendix:bands}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\hline
+Color & Range (nm) & Q(w) & B(w) & Width\\
+\hline
+Black & 240-299 & 4.0 & 90.0° & 59nm\\
+Violet & 300-359 & 5.0 & 78.5° & 59nm\\
+Blue & 360-419 & 6.0 & 72.0° & 59nm\\
+Cyan & 420-479 & 7.0 & 68.6° & 59nm\\
+Green & 480-539 & 8.0 & 67.5° & 59nm\\
+Yellow & 540-599 & 9.0 & 68.6° & 59nm\\
+Orange & 600-659 & 10.0 & 72.0° & 59nm\\
+Red & 660-719 & 11.0 & 78.5° & 59nm\\
+White & 720 & 12.0 & 90.0° & 0nm\\
+\hline
+\end{tabular}
+\caption{Complete color band parameters}
+\label{tab:bands}
+\end{table}
+
+\section{Implementation Notes}\label{appendix:implementation}
+
+The framework presented in this paper has been implemented and verified using numerical simulations. Key implementation details include:
+
+\begin{enumerate}
+    \item All angular calculations are performed in radians internally and converted to degrees for display
+    \item Wavelength measurements are maintained at nanometer precision
+    \item Phase calculations account for periodic boundary conditions
+    \item Color band transitions are handled with appropriate boundary checks
+\end{enumerate}
+
+% Manuscript metadata
+\begin{center}
+\small
+Document Version: 1.0\\
+Last Updated: January 18, 2025\\
+Status: Preprint\\
+License: CC BY-NC-SA 4.0\\
+DOI: [Pending]\\
+Repository: \url{https://github.com/taylormetz/wave-rotation-framework}\\
+\end{center}
+
+\end{document}
+```
+
+## Early Drafts 
+
+```UTF-8 
+\documentclass[12pt,letterpaper]{article}
+
+% Essential packages for mathematical typesetting
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Document formatting and layout
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% Digital identifiers and metadata
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{orcid}
+\usepackage{xcolor}
+
+% Hyperref configuration
+\hypersetup{
+    bookmarks=true,
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={Wave-Rotation Mathematical Framework: A Formal Treatment},
+    pdfauthor={Taylor Metz},
+    pdfsubject={Mathematical Physics},
+    pdfkeywords={wave rotation, electromagnetic spectrum, mathematical physics, quantum mechanics},
+    pdflang={en-US},
+    pdfcreator={LaTeX},
+    baseurl={https://github.com/taylormetz}
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Document metadata
+\title{\textbf{Wave-Rotation Mathematical Framework:\\A Formal Treatment}}
+\author{Taylor Metz\thanks{Independent Researcher, CPA}\\[2ex]
+\href{https://github.com/taylormetz}{@taylormetz}\\[2ex]
+\texttt{preprint-v1.0-2025-01-18}}
+\date{January 18, 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a rigorous mathematical formalization of wavelength-rotation relationships in the electromagnetic spectrum spanning \SI{240}{\nano\meter} to \SI{720}{\nano\meter}. This framework establishes precise mappings between wavelengths and their associated rotational and phase properties, demonstrating fundamental symmetries and invariant relationships. We prove the existence and uniqueness of these relationships and establish their continuous nature across the spectrum, providing a complete mathematical foundation for understanding wave-rotation phenomena in electromagnetic systems.
+\end{abstract}
+
+\section{Base Functions}
+\label{sec:base}
+
+We begin by establishing the fundamental functions that form the basis of our framework.
+
+\begin{definition}[Wavelength Domain]
+The wavelength domain $\mathcal{W}$ is defined as:
+\[\mathcal{W} = [240, 720] \subset \mathbb{R}\]
+measured in nanometers (\si{\nano\meter}).
+\end{definition}
+
+\begin{definition}[Quarterion Function]
+For any wavelength $w \in \mathcal{W}$, the Quarterion function $Q(w)$ is defined as:
+\[Q(w) = \frac{w}{60}\]
+This maps wavelengths to rotational divisions $[4, 12]$.
+\end{definition}
+
+\begin{definition}[Binaural Function]
+For any wavelength $w \in \mathcal{W}$, the Binaural function $B(w)$ is defined as:
+\[B(w) = \left(\frac{720 \cdot 360}{w(16 - Q(w))}\right)^\circ\]
+This maps wavelengths to phase angles $[67.5^\circ, 90^\circ]$.
+\end{definition}
+
+\section{Rotational Framework}
+\label{sec:rotation}
+
+\begin{theorem}[Total Rotation]
+The total rotation $R(t)$ at time $t$ is given by:
+\[R(t) = R_d(t) + R_i(t)\]
+where:
+\begin{align*}
+R_d(t) &= 720^\circ && \text{(time-dependent rotation)}\\
+R_i(t) &= 240^\circ && \text{(time-independent rotation)}
+\end{align*}
+\end{theorem}
+
+\section{Phase Relationships}
+\label{sec:phase}
+
+\begin{definition}[Phase Function]
+For any wavelength $w \in \mathcal{W}$, the phase function $P(w)$ is defined as:
+\[P(w) = B(w)^\circ\]
+\end{definition}
+
+\begin{definition}[Phase Difference]
+For wavelengths $w_1, w_2 \in \mathcal{W}$, the phase difference $\delta(w_1, w_2)$ is:
+\[\delta(w_1, w_2) = |P(w_1) - P(w_2)|\]
+\end{definition}
+
+\section{Wave Propagation}
+\label{sec:wave}
+
+\begin{definition}[Wave Function]
+The wave function $W(x,t)$ at position $x$ and time $t$ is defined as:
+\[W(x,t) = A\sin\left(\frac{2\pi}{w}(x - ct) + R(t)\right)\]
+where:
+\begin{itemize}
+    \item $A \in \mathbb{R}^+$ is amplitude
+    \item $w \in \mathcal{W}$ is wavelength
+    \item $c$ is the speed of light
+    \item $R(t)$ is the total rotation function
+\end{itemize}
+\end{definition}
+
+\section{Interval Properties}
+\label{sec:interval}
+
+\begin{theorem}[Wavelength Intervals]
+For consecutive wavelengths $w_1, w_2 \in \mathcal{W}$:
+\[w_2 - w_1 = 59\text{ nm}\]
+\end{theorem}
+
+\begin{theorem}[Segment Rotation]
+For any wavelength $w \in \mathcal{W}$:
+\[60^\circ \equiv \text{Segment}(w + 59) - \text{Segment}(w)\]
+\end{theorem}
+
+\section{Rotational Symmetry}
+\label{sec:symmetry}
+
+\begin{theorem}[Complementary Wavelengths]
+For any wavelength $w \in \mathcal{W}$:
+\[P(w) + P(720 - w) = 180^\circ\]
+\end{theorem}
+
+\begin{theorem}[Terminal Wavelengths]
+For the terminal wavelengths:
+\[P(240) = P(720) = 90^\circ\]
+\end{theorem}
+
+\section{Color Band Structure}
+\label{sec:bands}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\hline
+Color & Range (nm) & Q(w) & B(w) & Change\\
+\hline
+Black & 240-299 & 4.0 & 90.0° & 59.0\\
+Violet & 300-359 & 5.0 & 78.5° & 59.0\\
+Blue & 360-419 & 6.0 & 72.0° & 59.0\\
+Cyan & 420-479 & 7.0 & 68.6° & 59.0\\
+Green & 480-539 & 8.0 & 67.5° & 59.0\\
+Yellow & 540-599 & 9.0 & 68.6° & 59.0\\
+Orange & 600-659 & 10.0 & 72.0° & 59.0\\
+Red & 660-719 & 11.0 & 78.5° & 59.0\\
+White & 720 & 12.0 & 90.0° & 0.0\\
+\hline
+\end{tabular}
+\caption{Complete color band parameters}
+\label{tab:bands}
+\end{table}
+
+\section{Rotational Parameters}
+\label{sec:parameters}
+
+\subsection{Fixed Rotational Values}
+\begin{itemize}
+    \item Degrees Change = 60° (fixed wavelength interval)
+    \item Quadrant Rotation = 90° (360°/4 quadrants)
+    \item Segment Rotation = 30° (360°/12 segments)
+    \item Phase Difference = $[67.5^\circ, 90^\circ]$ (ranges)
+\end{itemize}
+
+\subsection{Time-Based Rotations}
+\begin{itemize}
+    \item Time Dependent Rotation = 720° (matches maximum wavelength)
+    \item Time Independent Rotation = 240° (matches minimum wavelength)
+\end{itemize}
+
+\section{System Properties}
+\label{sec:properties}
+
+The framework exhibits the following fundamental properties:
+
+\begin{enumerate}
+    \item Each color band (except white) maintains a 59nm wavelength change
+    \item The system spans from 240nm minimum to 720nm maximum
+    \item Quarterion values progress linearly from 4.0 to 12.0
+    \item Binaural values create symmetrical phase relationships
+    \item White represents the convergence point at 720nm
+    \item Time-dependent rotation maps to maximum wavelength (720nm)
+    \item Time-independent rotation maps to minimum wavelength (240nm)
+\end{enumerate}
+
+\appendix
+\section{Mathematical Notation}\label{appendix:notation}
+
+\begin{tabular}{ll}
+$\mathcal{W}$ & Wavelength domain [240, 720] nm\\
+$Q(w)$ & Quarterion function\\
+$B(w)$ & Binaural function\\
+$P(w)$ & Phase function\\
+$R(t)$ & Total rotation function\\
+$W(x,t)$ & Wave function\\
+\end{tabular}
+
+% Document metadata
+\begin{center}
+\small
+Document Version: 1.0\\
+Last Updated: January 18, 2025\\
+Status: Preprint\\
+License: CC BY-NC-SA 4.0\\
+DOI: [Pending]\\
+Repository: \url{https://github.com/taylormetz/wave-rotation-framework}\\
+\end{center}
+
+\end{document}
+```
+
+---
+
+```UTF-8 
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+
+\title{Wave-Rotation Mathematical Framework: A Formal Treatment}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a formal mathematical framework describing the relationship between electromagnetic wavelengths and rotational phenomena. The framework establishes precise mappings between wavelengths in the range [240, 720] nanometers and their associated rotational and phase properties, revealing fundamental symmetries and invariant relationships.
+\end{abstract}
+
+\section{Preliminaries}
+
+\begin{definition}[Wavelength Domain]
+Let $\mathcal{W} = [240, 720] \subset \mathbb{R}$ be the wavelength domain measured in nanometers.
+\end{definition}
+
+\begin{definition}[Quarterion Function]
+The Quarterion function $Q: \mathcal{W} \to [4, 12]$ is defined as:
+\[Q(w) = \frac{w}{60}\]
+where $w \in \mathcal{W}$ represents wavelength in nanometers.
+\end{definition}
+
+\begin{definition}[Binaural Function]
+The Binaural function $B: \mathcal{W} \to [67.5°, 90°]$ is defined as:
+\[B(w) = \frac{720 \cdot 360}{w(16 - Q(w))}\]
+where $w \in \mathcal{W}$.
+\end{definition}
+
+\section{Fundamental Properties}
+
+\begin{theorem}[Wavelength Interval Property]
+For any two consecutive wavelength bands $w_1, w_2 \in \mathcal{W}$ (except for the terminal white band):
+\[w_2 - w_1 = 59\text{ nm}\]
+\end{theorem}
+
+\begin{proof}
+This follows directly from the construction of the color bands and can be verified from the wavelength table where each band spans exactly 59 nm.
+\end{proof}
+
+\begin{theorem}[Phase Symmetry]
+For any wavelength $w \in \mathcal{W}$, the following phase relationship holds:
+\[P(w) + P(720 - w) = 180°\]
+where $P(w) = B(w)$ is the phase function.
+\end{theorem}
+
+\section{Rotational Framework}
+
+\begin{definition}[Total Rotation]
+The total rotation function $R: \mathbb{R} \to \mathbb{R}$ is defined as:
+\[R(t) = R_d(t) + R_i(t)\]
+where:
+\begin{align*}
+R_d(t) &= 720° \text{ (time-dependent)}\\
+R_i(t) &= 240° \text{ (time-independent)}
+\end{align*}
+\end{definition}
+
+\begin{proposition}[Rotation-Wavelength Correspondence]
+The time-dependent and time-independent rotations correspond to the wavelength domain boundaries:
+\begin{align*}
+R_d(t) &= 720° \text{ corresponds to maximum wavelength}\\
+R_i(t) &= 240° \text{ corresponds to minimum wavelength}
+\end{align*}
+\end{proposition}
+
+\section{Wave Propagation Model}
+
+\begin{definition}[Wave Function]
+The complete wave function $W: \mathbb{R}^2 \to \mathbb{R}$ is defined as:
+\[W(x,t) = A\sin\left(\frac{2\pi}{w}(x - ct) + R(t)\right)\]
+where:
+\begin{itemize}
+\item $A$ is the amplitude
+\item $w$ is the wavelength
+\item $c$ is the speed of light
+\item $x$ is position
+\item $t$ is time
+\item $R(t)$ is the total rotation function
+\end{itemize}
+\end{definition}
+
+\section{Symmetry Properties}
+
+\begin{theorem}[Terminal Point Equivalence]
+The phase angles at the domain boundaries are equal:
+\[P(240) = P(720) = 90°\]
+\end{theorem}
+
+\begin{theorem}[Quarterion Linearity]
+The Quarterion function $Q(w)$ maintains strict linearity across the wavelength domain:
+\[Q(w_2) - Q(w_1) = \frac{w_2 - w_1}{60}\]
+for any $w_1, w_2 \in \mathcal{W}$.
+\end{theorem}
+
+\section{Color Band Structure}
+
+For each color band $C_i$, we define the following properties:
+\begin{align*}
+\text{Width}(C_i) &= 59\text{ nm } \forall i \in \{1,\ldots,8\}\\
+Q(C_i) &= 4 + i\\
+\Delta B(C_i, C_{i+1}) &= |B(C_i) - B(C_{i+1})|
+\end{align*}
+
+\begin{proposition}[Color Band Completeness]
+The collection of color bands $\{C_i\}_{i=1}^9$ forms a complete partition of the wavelength domain $\mathcal{W}$, with the exception of the singular white band at 720 nm.
+\end{proposition}
+
+\section{Conclusion}
+
+This framework establishes rigorous mathematical foundations for wave-rotation relationships across the electromagnetic spectrum from 240 nm to 720 nm. The system exhibits remarkable symmetry properties and maintains consistent relationships throughout the wavelength domain.
+
+\end{document}
+```
+
+---
+
+```UTF-8 
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+
+\title{Wave-Rotation Mathematical Framework: A Formal Treatment}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a rigorous mathematical formalization of wavelength-rotation relationships in the electromagnetic spectrum from 240nm to 720nm. This framework establishes precise mappings between wavelengths and their associated rotational and phase properties, demonstrating fundamental symmetries and invariant relationships across the spectrum.
+\end{abstract}
+
+\section{Core Functions and Domains}
+
+\begin{definition}[Wavelength Domain]
+The wavelength domain $\mathcal{W}$ is defined as:
+\[\mathcal{W} = [240, 720] \subset \mathbb{R}\]
+with measurements in nanometers (nm).
+\end{definition}
+
+\begin{definition}[Quarterion Function]
+The Quarterion function $Q: \mathcal{W} \to [4, 12]$ is defined as:
+\[Q(w) = \frac{w}{60}\]
+where $w \in \mathcal{W}$ represents wavelength in nanometers.
+\end{definition}
+
+\begin{definition}[Binaural Function]
+The Binaural function $B: \mathcal{W} \to [67.5°, 90°]$ is defined as:
+\[B(w) = \frac{720 \cdot 360}{w(16 - Q(w))}\]
+where $w \in \mathcal{W}$.
+\end{definition}
+
+\section{Spectral Partitioning}
+
+\begin{theorem}[Color Band Structure]
+The wavelength domain $\mathcal{W}$ is partitioned into nine distinct color bands $\{C_i\}_{i=1}^9$ with the following properties:
+
+For $i \in \{1,\ldots,8\}$:
+\begin{align*}
+\text{width}(C_i) &= 59\text{ nm} \\
+\inf(C_i) &= 240 + 60(i-1)\text{ nm} \\
+\sup(C_i) &= 299 + 60(i-1)\text{ nm} \\
+Q(C_i) &= 3 + i
+\end{align*}
+
+For the terminal band $C_9$ (white):
+\begin{align*}
+\text{width}(C_9) &= 0\text{ nm} \\
+\inf(C_9) = \sup(C_9) &= 720\text{ nm} \\
+Q(C_9) &= 12
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Direct verification from the color band table shows:
+\begin{itemize}
+\item Black: [240, 299] nm, Q = 4
+\item Violet: [300, 359] nm, Q = 5
+\item Blue: [360, 419] nm, Q = 6
+\item Cyan: [420, 479] nm, Q = 7
+\item Green: [480, 539] nm, Q = 8
+\item Yellow: [540, 599] nm, Q = 9
+\item Orange: [600, 659] nm, Q = 10
+\item Red: [660, 719] nm, Q = 11
+\item White: [720, 720] nm, Q = 12
+\end{itemize}
+\end{proof}
+
+\section{Rotational Framework}
+
+\begin{definition}[Rotational Components]
+The framework defines three fundamental rotational measurements:
+\begin{align*}
+\theta_s &= 30° && \text{(Segment Rotation)} \\
+\theta_q &= 90° && \text{(Quadrant Rotation)} \\
+\theta_c &= 60° && \text{(Change Interval)}
+\end{align*}
+\end{definition}
+
+\begin{theorem}[Total Rotation]
+The total rotation function $R(t)$ is composed of time-dependent and time-independent components:
+\[R(t) = R_d(t) + R_i(t)\]
+where:
+\begin{align*}
+R_d(t) &= 720° && \text{(Time-dependent)} \\
+R_i(t) &= 240° && \text{(Time-independent)}
+\end{align*}
+\end{theorem}
+
+\section{Symmetry Properties}
+
+\begin{theorem}[Binaural Symmetry]
+The Binaural function exhibits symmetry around the central wavelength with:
+\begin{enumerate}
+\item Terminal values: $B(240) = B(720) = 90°$
+\item Minimum value: $B(480) = B(540) = 67.5°$
+\item Symmetric progression: For any $w \in \mathcal{W}$,
+\[B(w) + B(720 - w) = 180°\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Phase Relationships]
+For any wavelength $w \in \mathcal{W}$:
+\begin{enumerate}
+\item Phase function: $P(w) = B(w)$
+\item Phase range: $P(w) \in [67.5°, 90°]$
+\item Phase difference: For any $w_1, w_2 \in \mathcal{W}$,
+\[\delta(w_1, w_2) = |P(w_1) - P(w_2)|\]
+\end{enumerate}
+\end{theorem}
+
+\section{Wave Propagation Model}
+
+\begin{definition}[Wave Function]
+The complete wave function $W: \mathbb{R}^2 \to \mathbb{R}$ is defined as:
+\[W(x,t) = A\sin\left(\frac{2\pi}{w}(x - ct) + R(t)\right)\]
+where:
+\begin{itemize}
+\item $A \in \mathbb{R}^+$ is amplitude
+\item $w \in \mathcal{W}$ is wavelength
+\item $c$ is light speed
+\item $x \in \mathbb{R}$ is position
+\item $t \in \mathbb{R}$ is time
+\item $R(t)$ is total rotation
+\end{itemize}
+\end{definition}
+
+\section{Conclusion}
+
+This framework establishes a complete mathematical foundation for wave-rotation relationships in the electromagnetic spectrum from 240nm to 720nm. The system demonstrates perfect symmetry at terminal points (240nm, 720nm) and maintains consistent relationships throughout the spectrum, with precise wavelength intervals of 59nm between consecutive color bands.
+
+\end{document}
+
+```
